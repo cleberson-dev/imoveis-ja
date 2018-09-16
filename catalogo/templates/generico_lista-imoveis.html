@@ -1,0 +1,99 @@
+{% extends 'generico_base.html' %}
+{% load static %}
+
+
+{% block content %}
+<div class='categoria-box'>
+    <div class='cat-header'>
+        <div class='title'>
+            <h1><a href="{% url 'catalogo' %}">Imóveis</a></h1>
+            <img src="{% static 'img/icons/right-arrow.svg' %}" class='arrow'>
+            {% block cat %}
+            {% endblock %}
+        </div>
+        {% if imoveis %}
+            <div class='paginador up'>
+                    <p class='label'>Página {{ page_atual }} de {{ paginador.num_pages }}</p>
+                    <ul class='paginas'>
+                        {% for num_pagina in paginador.page_range %}
+                            <li>
+                                <a 
+                                href="{{ request.path }}?p={{num_pagina}}" 
+                                class="{% if num_pagina == page_atual %}active{% endif %}">
+                                {{ num_pagina }}
+                                </a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+            </div>
+        {% endif %}
+    </div>
+    {% for tipo in teste %}
+        {{ tipo }}
+    {% endfor %}
+        {% if imoveis %}
+            <div class="catalogo">
+                {% for imovel in imoveis %}
+                    <div class='item'>
+                        <img 
+                        src="
+                            {% if imovel.imagem %}
+                                {{ imovel.imagem.url }}
+                            {% else %}
+                                {% static 'img/no-photo.jpg'%}
+                            {% endif %}" 
+                        class="foto">
+                        <ul class='info'>
+                            <h1 class='nome'>
+                                <a href="{{ imovel.get_absolute_url }}">{{ imovel.nome }}</a>
+                            </h1>
+                            <li>Quartos:
+                                <span>{{ imovel.quartos }}</span>
+                            </li>
+                            <li>Área:
+                                <span>{{ imovel.area }}m²</span>
+                            </li>
+                            <li>Localização:
+                                <span>{{ imovel.localizacao }}</span>
+                            </li>
+                            <li>Anunciante:
+                                <span class='prop'>{{ imovel.anunciante }}</span>
+                            </li>
+                        </ul>
+                        <div class='outros'>
+                            <div class='preco'>
+                                <h1>Preço</h1>
+                                <span class='preco-format'>{{ imovel.preco }}</span>
+                            </div>
+                            <a class='vermais-btn' href="{{ imovel.get_absolute_url }}">Ver Mais</a>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <div class='paginador end'>
+                <p class='label'>Página {{ page_atual }} de {{ paginador.num_pages }}</p>
+                <ul class='paginas'>
+                    {% for num_pagina in paginador.page_range %}
+                        <li>
+                            <a 
+                            href="{{ request.path }}?p={{num_pagina}}" 
+                            class="{% if num_pagina == page_atual %}active{% endif %}">
+                            {{ num_pagina }}
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% else %}
+            <div class='no-results'>
+                <img src="https://media.giphy.com/media/l3V0HLYPfIKIVDyBG/giphy.gif" id='no-results-gif'>
+                <h1>SEM RESULTADOS</h1>
+                <div class='lil-text'>Veja todos os imóveis <a href="{% url 'catalogo' %}">aqui</a></div>
+            </div>
+        {% endif %}
+</div>
+{% endblock %}
+
+{% block scripts %}
+    <script src="{% static 'js/format.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends 'generico_base.html' %}
+{% block inicio %}
+{% load static %}
+<div class="search-area">
+        <form action="{% url 'catalogo' %}" method='get'>
+            <h1>Busque por imóveis...</h1>
+            <div class='search-bar'>
+                <input type="text" name='q' placeholder="Digite aqui o nome do imóvel desejado...">
+                <input type="image" 
+                    class='ontop-search' 
+                    name="submit" 
+                    src="{% static 'img/icons/search.svg' %}" 
+                    border="0" 
+                    alt="Submit"
+                />
+            </div>
+        </form>
+    </div>
+{% endblock %}

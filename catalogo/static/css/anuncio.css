@@ -1,0 +1,217 @@
+.anunciar-box {
+    background-color: white;
+    width: 100%;
+    padding: 0 50px;
+    font-family: 'HK Grotesk', sans-serif;
+}
+.anunciar-box .header-anunciar {
+    margin: 2em 0;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+.anunciar-box .header-anunciar img {
+    height: 2.5em;
+}
+.anunciar-box .header-anunciar h1 {
+    text-transform: uppercase;
+    font-weight: lighter;
+    margin-left: 10px;
+}
+.anunciar-box form {
+    display: flex;
+    justify-content: space-between;
+}
+
+
+/* Seção de Input */
+.anunciar-box form .input-area {
+    width: 40%;
+}
+.anunciar-box form .one-input {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+.anunciar-box form .two-input {
+    display: flex;
+}
+.anunciar-box form .input-area textarea {
+    resize: none;
+    height: 200px;
+}
+.anunciar-box form .input-area input,
+.anunciar-box form .input-area select,
+.anunciar-box form .input-area textarea {
+    border: 1px solid #DCDCDC;
+    border-radius: 5px;
+    padding: 0.5em;
+    margin-top: 10px;
+}
+.anunciar-box form .input-area input:focus,
+.anunciar-box form .input-area select:focus,
+.anunciar-box form .input-area textarea:focus {
+    outline: none;
+    border: 1px solid #686DE0;
+    transition: 0.25s;
+}
+.anunciar-box .input-area input {
+    width: 30%;
+}
+.anunciar-box .input-area input[type='text'] {
+    width: 100%;
+}
+.divider {
+    height: 800px;
+    align-self: center;
+    width: 1px;
+    background-color: #dcdcdc;
+}
+
+
+
+
+/* Seção de Previsão */
+.anunciar-box form .preview-area {
+    top: 2em;
+    height: fit-content;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+}
+.anunciar-box form .preview-area h2 {
+    text-transform: uppercase;
+    font-weight: lighter;
+    margin-top: 0;
+}
+.anunciar-box form .preview-area .info {
+    display: flex;
+}
+.anunciar-box form .preview-area .info .texts {
+    margin-left: 0.5em;
+}
+.anunciar-box form .preview-area .info .texts .field {
+    margin-bottom: 10px;
+}
+.anunciar-box form .preview-area .info .texts .double-field {
+    display: flex;
+}
+.anunciar-box form .preview-area .info .texts .double-field .field {
+    margin-right: 3px;
+}
+.anunciar-box form .preview-area .info .texts p {
+    margin: 0;
+    font-size: 0.75rem;
+    color: #bdbdbd;
+    text-transform: uppercase;
+}
+.anunciar-box form .preview-area .info .texts span {
+    font-size: 1rem;
+}
+.anunciar-box form .preview-area .info img {
+    height: 300px;
+    width: 300px;
+    border: 3px solid #686DE0;
+}
+.anunciar-box form .preview-area h4 {
+    margin: 0;
+}
+.anunciar-box form .preview-area .descricao,
+.anunciar-box form .preview-area .tags {
+    margin: 20px 0;
+}
+
+.anunciar-box form .preview-area .tags .tags-content {
+    min-height: 100px;
+    align-content: flex-start;
+}
+.anunciar-box form .preview-area .descricao p {
+    white-space: pre-line; 
+    height: 200px;
+    overflow-y: scroll;
+    text-overflow: ellipsis;
+}
+.anunciar-box form .preview-area .descricao p,
+.anunciar-box form .preview-area .tags-content
+ {
+    max-width: 100%;
+    margin: 0;
+    padding: 1rem;
+    border: 1px dotted #00000033;
+}
+.anunciar-box form button {
+    padding: 0.5em 0.9em;
+    color: white;
+    background-color: #686DE0;
+    border: none;
+    font-family: 'HK Grotesk', sans-serif;
+    text-transform: uppercase;
+    font-size: 1.75em;
+    font-weight: 900;
+    cursor: pointer;
+    align-self: center;
+}
+.anunciar-box form .input-area .tag-select #id_tags {
+    display: none;
+}
+.anunciar-box form .input-area .tag-select {
+    display: flex;
+    flex-wrap: wrap;
+}
+.anunciar-box form .input-area .tag-select .option {
+    background: #EEEEEE;
+    color: #686DE0;
+    border: 2px solid #686DE0;
+    margin-top: 5px;
+    cursor: pointer;
+    padding: 0.5em 1em;
+    border-radius: 5px;
+    font-weight: 500;
+    margin-right: 5px;
+    user-select: none;
+    font-size: 0.9em;
+}
+.anunciar-box form .input-area .tag-select .option.checked {
+    background: #686DE0;
+    color: #EEEEEE;
+    border: 2px solid #EEEEEE;
+}
+
+
+.anunciar-box form .preview-area .tags-content {
+    display: flex;
+    flex-wrap: wrap;
+}
+.anunciar-box form .preview-area .tags-content .prev-tag {
+    background: #686DE0;
+    color: #EEEEEE;
+    border: 2px solid #686DE0;
+    margin-bottom: 5px;
+}
+.anunciar-box form .preview-area .tags-content .prev-tag {
+    cursor: pointer;
+    padding: 0.5em 1em;
+    border-radius: 5px;
+    font-weight: 500;
+    margin-right: 5px;
+    user-select: none;
+    font-size: 0.9em;
+}
+.capa-button {
+    background-color: #686DE0;
+    color: white;
+    border-radius: 3px;
+    text-transform: uppercase;
+    font-weight: bold;
+    padding: 0.75rem;
+    text-align: center;
+}
+
+.length-legend {
+    bottom: 5px;
+    left: 5px;
+    font-size: 0.8rem;
+    text-align: right;
+    color: #707070;
+}
+

@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta charset='utf-8'>
+        <title>{% block title %}Imóveis Já!{% endblock %}</title>
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+        {% block styles %}
+        {% endblock %}
+    </head>
+    <body>
+        <div class="header">
+            <ul class='navbar'>
+                <li class="{% if request.path == '/' %}active{% endif %}"><a href="{% url 'inicio' %}">Início</a></li>
+                <li class="{% if request.path == '/catalogo/' %}active{% endif %}">
+                    <a href="{% url 'catalogo' %}">Imóveis</a>
+                </li>
+            </ul>
+            <a class='logo' href="{% url 'inicio' %}">
+                <img src="{% static 'img/logo.png' %}">
+            </a>
+            <div class="login-area">
+
+                {% if user.is_authenticated %}
+                    <div class='loggedin'>
+                        <div>Bem Vindo, <span class='username'>{{ user }}</span></div>
+                        <div class='opt'>
+                            <a href="{% url 'anunciar' %}" class='anunciar'>Anunciar</a>
+                            <a href="{% url 'meus-anuncios' %}" class='anuncios'>Meus Anúncios</a>
+                            <a href="{% url 'logout' %}" class='sair'>Sair</a>
+                        </div>
+                    </div>
+                {% else %}
+                    <a href="{% url 'login' %}" class='login-btn'>ENTRAR</a>
+                {% endif %}
+
+            </div>
+        </div>
+
+        {% block inicio %} 
+        {% endblock %}
+
+        <div class='content'>
+
+            {% block content %} 
+            {% endblock %}
+
+        </div>
+        {% block scripts %}
+        {% endblock %}
+    </body>
+</html>

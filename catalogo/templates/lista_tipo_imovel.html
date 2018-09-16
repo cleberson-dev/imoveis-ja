@@ -1,0 +1,19 @@
+{% extends 'generico_lista-imoveis.html' %} {% block inicio %}
+<div class='minha-nav'>
+    <h1>TIPOS DE IMÓVEIS</h1>
+    <ul>
+        {% for tipo in tipos_de_imoveis %}
+            <li>
+                <a href="{% url 'tipo-de-imovel' tipo.0 %}" class="{% if tipo.1 == tipo_atual %}active{% endif %}">
+                    {{ tipo.1 }}
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %} {% block cat %}
+<div class='cat'>
+    <h2>Tipo de imóvel:</h2>
+    <span class='nome-categoria'>{{ tipo_atual }}</span>
+</div>
+{% endblock %}

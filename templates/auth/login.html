@@ -1,0 +1,41 @@
+{% load static %}
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta charset='utf-8'>
+        <title>Login</title>
+        <link rel='stylesheet' href="{% static 'css/auth.css' %}">
+    </head>
+    <body>
+        <div class='container'>
+            <section class='login-area'>
+                <div class='header'>
+                    <h1>ENTRE</h1>
+                    <div class='line'></div>
+                </div>
+                <div class='content'>
+                    {% if form.errors %}
+                        <p>Seu nome de usuário ou senha está incorreto. Tente novamente.</p>
+                    {% endif %}
+                    <form method='post'>
+                        {% csrf_token %}
+                        {{ form.username.label_tag }}
+                        {{ form.username }}
+                        {{ form.password.label_tag }}
+                        {{ form.password }}
+                        <a href='#' class='esquece-senha'>Esqueceu a senha?</a>
+                        <button type='submit' class='btn full-green'>Entrar</button>
+                    </form>
+                    <div class='register'>
+                        <h1>
+                            NÃO SE REGISTROU AINDA? 
+                            CRIE UMA CONTA PARA ANUNCIAR SEU IMÓVEL CONOSCO!
+                        </h1>
+                        <img src="{% static 'img/logo.png' %}">
+                        <a class="btn out-green" href="{% url 'registrar' %}">Registre-se</a>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </body>
+</html>

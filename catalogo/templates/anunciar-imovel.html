@@ -1,0 +1,189 @@
+{% extends 'generico_base.html' %}
+{% load static %}
+
+{% block scripts %}
+    <script
+    src="https://code.jquery.com/jquery-3.3.1.min.js"
+    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
+    <script src="{% static 'js/anuncio.js' %}"></script>
+    <script src="{% static 'js/select.js' %}"></script>
+{% endblock %}
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'css/anuncio.css' %}">
+{% endblock %}
+
+
+{% block content %}
+    <div class='anunciar-box'>
+        <div class='header-anunciar'>
+            <img src="{% static 'img/icons/home.svg' %}">
+            <h1>Anunciar Imóvel</h1>
+        </div>
+        {{ infos }}
+        <form method='post' enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class='input-area'>
+                {% for field in form %}
+                <div class='one-input'>
+                    {{ field.label_tag }}
+                    {% if field.name == 'descricao' %}
+                        {{ field }}
+                        <span class="length-legend">300 caracteres restantes</span>
+                    {% elif field.name == 'tags' %}
+                        <div class='tag-select'>
+                            {{ field }}
+                        </div>
+                    {% else %}
+                        {{ field }}
+                    {% endif %}
+                </div>
+                {% endfor %}
+            </div>
+            <div class='divider'></div>
+            <div class='preview-area'>
+                <h2>Previsão</h2>
+                <div class='info'>
+                    <img id="imagem" src="{% static 'img/no-photo.jpg' %}">
+                    <div class='texts'>
+                        <div class="field">
+                            <p>Nome do imóvel</p>
+                            <span id="prev-nome"></span>
+                        </div>
+                        <div class="field">
+                            <p>Tipo de imóvel</p>
+                            <span id="prev-tipo"></span>
+                        </div>
+                        <div class="field">
+                            <p>Localização</p>
+                            <span id="prev-local"></span>
+                        </div>
+                        <div class="field">
+                            <p>Área:</p>
+                            <span id="prev-area"></span>
+                        </div>
+                        <div class="double-field">
+                            <div class="field">
+                                <p>Quartos:</p>
+                                <span id="prev-quartos"></span>
+                            </div>
+                            <div class="field">
+                                <p>Banheiros:</p>
+                                <span id="prev-banheiros"></span>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <p>Estacionamento:</p>
+                            <span id="prev-vagas_estacionamento"></span>
+                        </div>
+                        <div class="field">
+                            <p>Preço:</p>
+                            <span id="prev-preco"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class='descricao'>
+                    <h4>Descrição</h4>
+                    <p></p>
+                </div>
+                <div class='tags'>
+                    <h4>Tags</h4>
+                    <div class="tags-content">
+
+                    </div>
+                </div>
+                <button type="submit">Anunciar</button>
+            </div>
+        </form>
+    </div>
+{% endblock %}
+
+
+<!-- <div class='one-input'>
+        <label>Nome:</label>
+        <input type="text" name="imovel-nome">
+    </div>
+    <div class='one-input'>
+        <label>Tipo:</label>
+        <select name="imovel-tipo">
+            <option value="arroz">Feijao</option>
+            <option>Feijao</option>
+            <option>Feijao</option>
+            <option value="fodase">Batata</option>
+            <option>Feijao</option>
+            <option>Feijao</option>
+            <option>Feijao</option>
+            <option>Feijao</option>
+        </select>
+    </div>
+    <div class='one-input'>
+        <label>Localização:</label>
+        <input type="text" name="imovel-local">
+    </div>
+    <div class='one-input'>
+        <label>Área:</label>
+        <input type="number" name="imovel-area">
+    </div>
+    <div class='two-input'>
+        <div class='one-input'>
+            <label>Quartos:</label>
+            <input type="number" name="imovel-quartos">
+        </div>
+        <div class='one-input'>
+            <label>Banheiros:</label>
+            <input type="number" name="imovel-banheiros">
+        </div>
+    </div>
+    <div class='one-input'>
+        <label>Vagas no estacionamento:</label>
+        <input type="number" name="imovel-estacionamento">
+    </div>
+    <div class='one-input'>
+        <label>Preço:</label>
+        <input type="text" name="imovel-preco">
+    </div>
+    <div class='one-input'>
+        <label>Imagem:</label>
+        <label for="imovel-capa" class='capa-button'>Escolha</label>
+        <input type="file" name="imovel-capa" id="imovel-capa" hidden>
+    </div>
+    <div class='one-input'>
+        <label>Descrição:</label>
+        <textarea maxlength="300"></textarea>
+        <span class="length-legend">300 caracteres restantes</span>
+    </div>
+    <div class='one-input'>
+        <label>Tags:</label>
+        <div class="tags">
+            <label>
+                <input type="checkbox" name="tags" value="a"><span>Exemplo</span>
+            </label>
+            <label>
+                <input type="checkbox" name="tags" value="b"><span>Exemplo</span>
+            </label>
+            <label>
+                <input type="checkbox" name="tags" value="c"><span>Exemplo</span>
+            </label>
+            <label>
+                <input type="checkbox" name="tags" value="d"><span>Exemplo</span>
+            </label>
+            <label>
+                <input type="checkbox" name="tags" value="e"><span>Exemplo</span>
+            </label>
+            <label>
+                <input type="checkbox" name="tags" value="f"><span>Exemplo</span>
+            </label>
+            <label>
+                <input type="checkbox" name="tags" value="g"><span>Exemplo</span>
+            </label>
+            <label>
+                <input type="checkbox" name="tags" value="h"><span>Exemplo</span>
+            </label>
+            <label>
+                <input type="checkbox" name="tags" value="i"><span>Exemplo</span>
+            </label>
+            <label>
+                <input type="checkbox" name="tags" value="j"><span>Exemplo</span>
+            </label>
+        </div>
+    </div> -->

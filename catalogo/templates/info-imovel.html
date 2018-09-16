@@ -1,0 +1,55 @@
+{% extends 'generico_base.html' %}
+{% load static %}
+{% block content %}
+        <div class='imovel-box'>
+            <div class='tiny'>
+                <a href="{% url 'catalogo' %}">Imóveis</a>
+                <img src="{% static 'img/icons/right-arrow.svg' %}">
+                <a href="{% url 'tipo-de-imovel' imovel.tipo %}">{{ imovel.get_tipo_display }}</a>
+                <img src="{% static 'img/icons/right-arrow.svg' %}">
+            </div>
+            <div class='main'>
+                <h1>{{ imovel.nome }}</h1>
+                <div class='info'>
+                    <div class='fotos'>
+                        <img class='principal' src="
+                        {% if imovel.imagem %}
+                            {{ imovel.imagem.url }}
+                        {% else %}
+                            {% static 'img/no-photo.jpg' %}
+                        {% endif %}"
+                        >
+                    </div>
+                    <div class='descricao'>
+                        <div class='text'>
+                            <p>Quartos:<span> {{ imovel.quartos }}</span></p>
+                            <p>Área:<span> {{ imovel.area }}m²</span></p>
+                            <p>Localização:<span> {{ imovel.localizacao }}</span></p>
+                            <p>Data de Publicação:<span> {{ imovel.data_criacao }}</span></p>
+                            <div class='tags'>
+                                <p>Tags:
+                                {% for tag in imovel.tags.all %}
+                                    <a href="#">{{ tag }}</a>
+                                {% endfor %}
+                            </div>
+                            </p>
+                        </div>
+                        <div class='bottom'>
+                            <div class='preco'>
+                                <h1>Preço</h1>
+                                <div class='preco-format'>{{ imovel.preco }}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class='section descricao'>
+                <h1>DESCRIÇÃO</h1>
+                {{ imovel.descricao }}
+            </div>
+        </div>
+{% endblock %}
+
+{% block scripts %}
+    <script src="{% static 'js/format.js' %}"></script>
+{% endblock %}
